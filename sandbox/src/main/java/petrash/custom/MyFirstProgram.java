@@ -4,17 +4,11 @@ public class MyFirstProgram {
 
 	public static void main(String[] args) {
 
-		System.out.println("Hello, World!");
-
-		System.out.println(2 + 2);
-
-		System.out.println(2.0 / 3);
-
-		System.out.println("2" + 2);
-
-		System.out.println("2" + "2");
-
-		System.out.println("2 + 2 = " + (2 + 2));
+		int side = 6;
+		int aria = side * side;
+		double version = 1.0;
+		String title = "The aria of square with side " ;
+		System.out.println(title + side + " = " + aria + ". Program version " + version);
 	}
 
 }
