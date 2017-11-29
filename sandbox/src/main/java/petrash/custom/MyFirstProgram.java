@@ -7,23 +7,22 @@ public class MyFirstProgram {
         hello("user");
         hello("petrash");
 
-        double side = 5.0;
-        System.out.println("The aria of square with side " + side + " = " + aria(side));
+        Square s = new Square(5.0);
+        System.out.println("The aria of square with side " + s.side + " = " + aria(s));
 
-        int a = 3;
-        int b = 8;
-        System.out.println("The aria of rectangle with sides " + a + " and " + b + " = " + aria(a, b));
+        Rectangle r = new Rectangle(3, 8);
+        System.out.println("The aria of rectangle with sides " + r.sideA + " and " + r.sideB + " = " + aria(r));
     }
 
     public static void hello(String somebody) {
         System.out.println("Hello, " + somebody);
     }
 
-    public static double aria(double side) {
-        return side * side;
+    public static double aria(Square s) {
+        return s.side * s.side;
     }
 
-    public static int aria(int sideA, int sideB) {
-        return sideA * sideB;
+    public static int aria(Rectangle r) {
+        return r.sideA * r.sideB;
     }
 }
