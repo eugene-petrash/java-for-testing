@@ -11,4 +11,7 @@ public class Square {
         this.side = side;
     }
 
+    public double aria() {
+        return this.side * this.side;
+    }
 }

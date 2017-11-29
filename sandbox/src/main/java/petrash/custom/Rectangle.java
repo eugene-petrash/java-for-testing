@@ -13,5 +13,7 @@ public class Rectangle {
         sideB = b;
     }
 
-
+    public int aria() {
+        return this.sideA * this.sideB;
+    }
 }
