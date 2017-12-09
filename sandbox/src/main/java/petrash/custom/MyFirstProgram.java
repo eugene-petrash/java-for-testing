@@ -16,20 +16,12 @@ public class MyFirstProgram {
         Point p1 = new Point(2, 3.6);
         Point p2 = new Point(18.56, 6.09);
         System.out.println("Distance between two points p1(x=" + p1.pointX + ", y=" + p1.pointY + "), " +
-                "p2(x=" + p2.pointX + ", y=" + p2.pointY + ") equals " + distance(p1, p2));
+                "p2(x=" + p2.pointX + ", y=" + p2.pointY + ") equals " + p1.distance(p1, p2));
     }
 
     public static void hello(String somebody) {
 
         System.out.println("Hello, " + somebody);
-    }
-
-    public static double distance(Point p1, Point p2) {
-
-        return Math.sqrt(
-                Math.pow(p1.pointX - p2.pointX, 2) +
-                Math.pow(p1.pointY - p2.pointY, 2)
-        );
     }
 
 }
