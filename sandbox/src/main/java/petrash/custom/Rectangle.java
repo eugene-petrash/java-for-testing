@@ -9,8 +9,8 @@ public class Rectangle {
     public int sideB;
 
     public Rectangle(int a, int b) {
-        sideA = a;
-        sideB = b;
+        this.sideA = a;
+        this.sideB = b;
     }
 
     public int aria() {
