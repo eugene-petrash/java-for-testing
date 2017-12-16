@@ -6,22 +6,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * Created by petrash on 12/16/17.
  */
-public class NavigationHelper {
-    private ChromeDriver wd;
+public class NavigationHelper extends HelperBase {
 
     public NavigationHelper(ChromeDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void goToContactPage() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void goToGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
+        click(By.linkText("groups"));
     }
 
     public void returnToHomePage() {
-        wd.findElement(By.linkText("home")).click();
+        click(By.linkText("home"));
     }
 }

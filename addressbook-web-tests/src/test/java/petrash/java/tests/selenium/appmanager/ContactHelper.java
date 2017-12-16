@@ -7,21 +7,20 @@ import petrash.java.tests.selenium.model.ContactData;
 /**
  * Created by petrash on 12/16/17.
  */
-public class ContactHelper {
-    private ChromeDriver wd;
+public class ContactHelper extends HelperBase {
 
     public ContactHelper(ChromeDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void submitContactCreation() {
-        wd.findElement(By.name("submit")).click();
+        click(By.name("submit"));
     }
 
     public void fillContactForm(ContactData contact) {
-        wd.findElement(By.name("firstname")).sendKeys(contact.getFirstName());
-        wd.findElement(By.name("lastname")).sendKeys(contact.getLastName());
-        wd.findElement(By.name("mobile")).sendKeys(contact.getMobilePhone());
-        wd.findElement(By.name("email")).sendKeys(contact.getEmail());
+        sendKeys(By.name("firstname"), contact.getFirstName());
+        sendKeys(By.name("lastname"), contact.getLastName());
+        sendKeys(By.name("mobile"), contact.getMobilePhone());
+        sendKeys(By.name("email"), contact.getEmail());
     }
 }
