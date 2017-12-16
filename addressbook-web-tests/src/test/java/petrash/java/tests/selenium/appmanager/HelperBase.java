@@ -1,6 +1,7 @@
 package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
@@ -18,8 +19,9 @@ public class HelperBase {
     }
 
     protected void sendKeys(By locator, String text) {
-        click(locator);
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        WebElement element = wd.findElement(locator);
+        element.click();
+        element.clear();
+        element.sendKeys(text);
     }
 }
