@@ -1,17 +1,17 @@
-package petrash.java.tests.selenium;
+package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import petrash.java.tests.selenium.model.ContactData;
+import petrash.java.tests.selenium.model.GroupData;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * Created by petrash on 12/16/17.
  */
-public class TestBase {
+public class ApplicationManager {
     ChromeDriver wd;
 
     public static boolean isAlertPresent(ChromeDriver wd) {
@@ -23,8 +23,7 @@ public class TestBase {
         }
     }
 
-    @BeforeMethod
-    public void setUp() throws Exception {
+    public void init() {
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         login("admin", "secret");
@@ -41,34 +40,34 @@ public class TestBase {
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
-    protected void returnToHomePage() {
+    public void returnToHomePage() {
         wd.findElement(By.linkText("home")).click();
     }
 
-    protected void submitContactCreation() {
+    public void submitContactCreation() {
         wd.findElement(By.name("submit")).click();
     }
 
-    protected void fillContactForm(ContactData contact) {
+    public void fillContactForm(ContactData contact) {
         wd.findElement(By.name("firstname")).sendKeys(contact.getFirstName());
         wd.findElement(By.name("lastname")).sendKeys(contact.getLastName());
         wd.findElement(By.name("mobile")).sendKeys(contact.getMobilePhone());
         wd.findElement(By.name("email")).sendKeys(contact.getEmail());
     }
 
-    protected void goToContactPage() {
+    public void goToContactPage() {
         wd.findElement(By.linkText("add new")).click();
     }
 
-    protected void returnToGroupPage() {
+    public void returnToGroupPage() {
         wd.findElement(By.linkText("group page")).click();
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
         wd.findElement(By.name("submit")).click();
     }
 
-    protected void fillGroupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
         wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
@@ -80,14 +79,15 @@ public class TestBase {
         wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    protected void initGroupCreation() {
+    public void initGroupCreation() {
         wd.findElement(By.name("new")).click();
     }
 
-    protected void goToGroupPage() {
+    public void goToGroupPage() {
         wd.findElement(By.linkText("groups")).click();
     }
 
-    @AfterMethod
-    public void tearDown() { wd.quit(); }
+    public void stop() {
+        wd.quit();
+    }
 }

@@ -1,4 +1,4 @@
-package petrash.java.tests.selenium;
+package petrash.java.tests.selenium.model;
 
 public class GroupData {
     private final String name;

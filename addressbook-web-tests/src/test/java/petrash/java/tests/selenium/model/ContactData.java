@@ -1,4 +1,4 @@
-package petrash.java.tests.selenium;
+package petrash.java.tests.selenium.model;
 
 public class ContactData {
     private final String firstName;
