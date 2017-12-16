@@ -23,4 +23,12 @@ public class ContactHelper extends HelperBase {
         sendKeys(By.name("mobile"), contact.getMobilePhone());
         sendKeys(By.name("email"), contact.getEmail());
     }
+
+    public void initContactModification() {
+        click(By.cssSelector("[alt='Edit']"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
 }
