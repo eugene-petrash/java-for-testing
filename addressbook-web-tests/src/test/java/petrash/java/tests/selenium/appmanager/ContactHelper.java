@@ -3,6 +3,7 @@ package petrash.java.tests.selenium.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import petrash.java.tests.selenium.model.ContactData;
 
 /**
@@ -23,6 +24,7 @@ public class ContactHelper extends HelperBase {
         sendKeys(By.name("lastname"), contact.getLastName());
         sendKeys(By.name("mobile"), contact.getMobilePhone());
         sendKeys(By.name("email"), contact.getEmail());
+        new Select(wd.findElement(By.className("new_group"))).selectByVisibleText(contact.getGroup());
     }
 
     public void initContactModification() {
