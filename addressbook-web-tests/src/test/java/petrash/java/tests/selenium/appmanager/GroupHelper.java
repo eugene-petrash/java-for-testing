@@ -1,6 +1,7 @@
 package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import petrash.java.tests.selenium.model.GroupData;
 
@@ -9,7 +10,7 @@ import petrash.java.tests.selenium.model.GroupData;
  */
 public class GroupHelper extends HelperBase {
 
-    public GroupHelper(ChromeDriver wd) {
+    public GroupHelper(WebDriver wd) {
         super(wd);
     }
 

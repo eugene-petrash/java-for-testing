@@ -1,6 +1,7 @@
 package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -8,9 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * Created by petrash on 12/16/17.
  */
 public class HelperBase {
-    protected ChromeDriver wd;
+    protected WebDriver wd;
 
-    public HelperBase(ChromeDriver wd) {
+    public HelperBase(WebDriver wd) {
         this.wd = wd;
     }
 

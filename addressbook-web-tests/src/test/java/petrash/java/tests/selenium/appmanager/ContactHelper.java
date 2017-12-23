@@ -1,6 +1,7 @@
 package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import petrash.java.tests.selenium.model.ContactData;
 
@@ -9,7 +10,7 @@ import petrash.java.tests.selenium.model.ContactData;
  */
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper(ChromeDriver wd) {
+    public ContactHelper(WebDriver wd) {
         super(wd);
     }
 
