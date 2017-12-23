@@ -21,8 +21,10 @@ public class HelperBase {
 
     protected void sendKeys(By locator, String text) {
         WebElement element = wd.findElement(locator);
-        element.click();
-        element.clear();
-        element.sendKeys(text);
+        if (text != null) {
+            element.click();
+            element.clear();
+            element.sendKeys(text);
+        }
     }
 }
