@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import petrash.java.tests.selenium.model.ContactData;
 
 /**
@@ -20,14 +21,16 @@ public class ContactHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    public void fillContactForm(ContactData contact) {
+    public void fillContactForm(ContactData contact, boolean creation) {
         sendKeys(By.name("firstname"), contact.getFirstName());
         sendKeys(By.name("lastname"), contact.getLastName());
         sendKeys(By.name("mobile"), contact.getMobilePhone());
         sendKeys(By.name("email"), contact.getEmail());
 
-        if (isElementPresent(By.name("new_group"))) {
+        if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contact.getGroup());
+        } else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
 
     }
