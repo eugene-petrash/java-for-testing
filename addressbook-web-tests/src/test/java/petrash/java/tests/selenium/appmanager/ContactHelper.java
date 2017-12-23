@@ -7,14 +7,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import petrash.java.tests.selenium.model.ContactData;
+import petrash.java.tests.selenium.model.GroupData;
 
 /**
  * Created by petrash on 12/16/17.
  */
 public class ContactHelper extends HelperBase {
 
+    private final NavigationHelper getNavigationHelper;
+    private final GroupHelper getGroupHelper;
+
     public ContactHelper(WebDriver wd) {
         super(wd);
+        this.getNavigationHelper = new NavigationHelper(wd);
+        this.getGroupHelper = new GroupHelper(wd);
     }
 
     public void submitContactCreation() {
@@ -50,5 +56,20 @@ public class ContactHelper extends HelperBase {
     public void deleteSelectedContacts() {
         click(By.cssSelector("input[value='Delete']"));
         wd.switchTo().alert().accept();
+    }
+
+    public void createContact(ContactData contactData) {
+        getNavigationHelper.goToGroupPage();
+        if (! getGroupHelper.isThereAGroup()) {
+            getGroupHelper.createGroup(new GroupData("test1", null, null));
+        }
+        getNavigationHelper.goToContactPage();
+        fillContactForm(contactData, true);
+        submitContactCreation();
+        getNavigationHelper.returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
