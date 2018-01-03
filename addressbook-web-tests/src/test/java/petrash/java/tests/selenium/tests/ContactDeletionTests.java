@@ -1,5 +1,6 @@
 package petrash.java.tests.selenium.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.ContactData;
 import petrash.java.tests.selenium.model.GroupData;
@@ -11,6 +12,7 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
+        int before = app.getContactHelper().getContactsCount();
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Eugene", "Petrash",
                     "+380957119579", "petrash.evgeniy@gmail.com", "test1"));
@@ -18,5 +20,12 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().returnToHomePage();
+        int after = app.getContactHelper().getContactsCount();
+        if (before > 0) {
+            Assert.assertEquals(after, before - 1);
+        }
+        else if (before == 0) {
+            Assert.assertEquals(after, before);
+        }
     }
 }
