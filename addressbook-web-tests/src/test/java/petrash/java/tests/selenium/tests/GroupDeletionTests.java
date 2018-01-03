@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.GroupData;
 
+import java.util.List;
+
 /**
  * Created by petrash on 12/16/17.
  */
@@ -12,19 +14,19 @@ public class GroupDeletionTests extends TestBase {
     @Test
     public void testGroupDeletion() {
         app.getNavigationHelper().goToGroupPage();
-        int before = app.getGroupHelper().getGroupsCount();
+        List<GroupData> before = app.getGroupHelper().getGroupsList();
         if (! app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test1", null, null));
         }
         app.getGroupHelper().selectGroup(0);
         app.getGroupHelper().deleteSelectedGroups();
         app.getNavigationHelper().goToGroupPage();
-        int after = app.getGroupHelper().getGroupsCount();
-        if (before > 0) {
-            Assert.assertEquals(after, before - 1);
+        List<GroupData> after = app.getGroupHelper().getGroupsList();
+        if (before.size() > 0) {
+            Assert.assertEquals(after.size(), before.size() - 1);
         }
-        else if (before == 0) {
-            Assert.assertEquals(after, before);
+        else if (before.size() == 0) {
+            Assert.assertEquals(after.size(), before.size());
         }
     }
 

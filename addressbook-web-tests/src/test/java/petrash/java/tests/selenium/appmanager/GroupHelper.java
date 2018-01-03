@@ -2,8 +2,12 @@ package petrash.java.tests.selenium.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import petrash.java.tests.selenium.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by petrash on 12/16/17.
@@ -61,5 +65,16 @@ public class GroupHelper extends HelperBase {
 
     public int getGroupsCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<GroupData> getGroupsList() {
+        List<GroupData> groups = new ArrayList<GroupData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            GroupData group = new GroupData(name, null, null);
+            groups.add(group);
+        }
+        return groups;
     }
 }

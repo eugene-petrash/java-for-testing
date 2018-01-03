@@ -5,6 +5,8 @@ import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.ContactData;
 import petrash.java.tests.selenium.model.GroupData;
 
+import java.util.List;
+
 /**
  * Created by petrash on 12/16/17.
  */
@@ -12,7 +14,7 @@ public class ContactDeletionTests extends TestBase {
 
     @Test
     public void testContactDeletion() {
-        int before = app.getContactHelper().getContactsCount();
+        List<ContactData> before = app.getContactHelper().getContactsList();
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Eugene", "Petrash",
                     "+380957119579", "petrash.evgeniy@gmail.com", "test1"));
@@ -20,12 +22,12 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().selectContact(0);
         app.getContactHelper().deleteSelectedContacts();
         app.getNavigationHelper().returnToHomePage();
-        int after = app.getContactHelper().getContactsCount();
-        if (before > 0) {
-            Assert.assertEquals(after, before - 1);
+        List<ContactData> after = app.getContactHelper().getContactsList();
+        if (before.size() > 0) {
+            Assert.assertEquals(after.size(), before.size() - 1);
         }
-        else if (before == 0) {
-            Assert.assertEquals(after, before);
+        else if (before.size() == 0) {
+            Assert.assertEquals(after.size(), before.size());
         }
     }
 }
