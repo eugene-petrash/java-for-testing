@@ -3,7 +3,6 @@ package petrash.java.tests.selenium.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.ContactData;
-import petrash.java.tests.selenium.model.GroupData;
 
 import java.util.List;
 
