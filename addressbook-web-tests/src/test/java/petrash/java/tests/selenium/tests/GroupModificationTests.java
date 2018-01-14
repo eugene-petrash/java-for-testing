@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.GroupData;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -33,7 +35,10 @@ public class GroupModificationTests extends TestBase{
 
         before.remove(groupIndex);
         before.add(group);
-        Assert.assertEquals(new HashSet<GroupData>(before), new HashSet<GroupData>(after));
+        Comparator<? super GroupData> byID = (group1, group2) -> Integer.compare(group1.getId(), group2.getId());
+        before.sort(byID);
+        after.sort(byID);
+        Assert.assertEquals(before, after);
     }
 
 }
