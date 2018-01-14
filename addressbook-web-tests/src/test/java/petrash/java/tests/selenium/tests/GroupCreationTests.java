@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.GroupData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTests extends TestBase {
@@ -12,11 +13,23 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> before = app.getGroupHelper().getGroupsList();
+        GroupData group = new GroupData("test1", null, null);
         app.getGroupHelper().initGroupCreation();
-        app.getGroupHelper().fillGroupForm(new GroupData("test1", null, null));
+        app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupsList();
         Assert.assertEquals(after.size(), before.size() + 1 );
+
+        int max = 0;
+        for (GroupData groupInAfterList : after) {
+            if (groupInAfterList.getId() > max) {
+                max = groupInAfterList.getId();
+            }
+        }
+        group.setId(max);
+        before.add(group);
+
+        Assert.assertEquals(new HashSet<GroupData>(before), new HashSet<GroupData>(after));
     }
 }
