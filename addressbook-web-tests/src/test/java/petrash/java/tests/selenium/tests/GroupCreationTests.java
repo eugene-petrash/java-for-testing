@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import petrash.java.tests.selenium.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class GroupCreationTests extends TestBase {
 
         group.setId(
             after.stream().max(
-                    (group1, group2) -> Integer.compare( group1.getId(), group2.getId() )
+                    Comparator.comparingInt(GroupData::getId)
             )  // find and return group with max ID
             .get().getId() // Return ID from group with max ID
         );
