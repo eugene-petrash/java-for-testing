@@ -21,10 +21,10 @@ public class ContactModificationTests extends TestBase {
                     "+380957119579", "petrash.evgeniy@gmail.com", "test1"));
         }
         List<ContactData> before = app.getContactHelper().getContactsList();
-        ContactData contact = new ContactData( "Albert", "Einstein",
+        ContactData contact = new ContactData(before.get(contactIndex).getId(), "Albert", "Einstein",
                 "+1234567890", "instein@gmail.com", null);
 
-        app.getContactHelper().initContactModification(0);
+        app.getContactHelper().initContactModification(contactIndex);
         app.getContactHelper().fillContactForm(contact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().returnToHomePage();
