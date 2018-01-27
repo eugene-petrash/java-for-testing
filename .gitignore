@@ -17,3 +17,6 @@ sandbox/caches/
 sandbox/daemon/
 sandbox/native/
 sandbox/wrapper/
+
+# Don't ignore .idea folder
+!.idea
